@@ -39,17 +39,14 @@ modules:
       - install -Dm755 target/release/deno -t /app/bin/
 
     sources:
-      - type: archive
-        url: https://github.com/google/protobuf/releases/download/v3.8.0/protobuf-all-3.8.0.tar.gz
-        sha256: b7220b41481011305bf9100847cf294393973e869973a9661046601959b2960b
       - type: file
-        url:  https://github.com/denoland/rusty_v8/releases/download/v0.82.0/librusty_v8_release_x86_64-unknown-linux-gnu.a
-        sha256: da758e014bb373bb6bd0a89e7ae808a88df3691aeebe72d604f9fe65d1d35ec3
+        url:  https://github.com/denoland/rusty_v8/releases/download/v0.81.0/librusty_v8_release_x86_64-unknown-linux-gnu.a
+        sha256: 7bbecb626fecbacec46387a246e129e86db97630da4f8c120f81410b1cb8bdc1
         only-arches:
           - x86_64
       - type: file
-        url: https://github.com/denoland/rusty_v8/releases/download/v0.82.0/librusty_v8_release_aarch64-unknown-linux-gnu.a
-        sha256: be573ad19a05b53d94829d27a53d1d7a9e965a71010339d1edd60545a30d00a3
+        url: https://github.com/denoland/rusty_v8/releases/download/v0.81.0/librusty_v8_release_aarch64-unknown-linux-gnu.a
+        sha256: c0f7d472e4f6676b32e672dff314774231902a4e8eb0cff8e639d8bff1f0f99b
         only-arches:
           - aarch64
       - type: archive
