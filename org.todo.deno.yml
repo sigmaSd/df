@@ -16,7 +16,7 @@ modules:
   - name: deno
     buildsystem: simple
     build-commands:
-      - cargo build --release
+      - V8_FROM_SOURCE=1 cargo build --release
       - install -Dm755 target/release/deno -t /app/bin/
 
     sources:
