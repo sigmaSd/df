@@ -1,0 +1,30 @@
+app-id: io.github.sigmasd.deno
+
+runtime: org.freedesktop.Sdk
+runtime-version: '23.08'
+sdk: org.freedesktop.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+
+command: deno
+
+finish-args: 
+  - --socket=wayland
+  - --socket=fallback-x11
+
+modules:
+  - name: deno
+    buildsystem: simple
+    build-commands:
+      - cargo build --release
+      - install -Dm755 target/release/deno -t /app/bin/
+
+    sources:
+      - type: archive
+        url: https://github.com/denoland/deno/releases/download/v1.38.4/deno_src.tar.gz
+        sha256: a041d7407d89b94c7d2d863397159799c44ea5012eb3ff6870277003620b3ef4
+      - cargo-sources.json
+    build-options:
+      append-path: /usr/lib/sdk/rust-stable/bin
+      env:
+        CARGO_HOME: /run/build/deno/cargo
