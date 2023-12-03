@@ -37,12 +37,11 @@ modules:
 
   - name: deno
     build-options:
-    append-path: /usr/lib/sdk/rust-stable/bin
-    env:
-      CARGO_HOME: /run/build/nosleep/cargo
+      append-path: /usr/lib/sdk/rust-stable/bin
+      env:
+        CARGO_HOME: /run/build/deno/cargo
     buildsystem: simple
     build-commands:
-      - ls -l
       - mv librusty* librusty # unify name for different arch
       - RUSTY_V8_ARCHIVE=$PWD/librusty cargo build --release
       - mkdir /app/bin
