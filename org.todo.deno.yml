@@ -1,4 +1,4 @@
-app-id: io.github.sigmasd.deno
+app-id: org.todo.deno
 
 runtime: org.freedesktop.Sdk
 runtime-version: '23.08'
