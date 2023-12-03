@@ -13,6 +13,24 @@ finish-args:
   - --socket=fallback-x11
 
 modules:
+  - name: protobuf
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=None
+      - -DBUILD_SHARED_LIBS=ON
+      - -Dprotobuf_BUILD_TESTS=OFF
+    sources:
+      - type: git
+        url: https://github.com/protocolbuffers/protobuf.git
+        commit: 7f94235e552599141950d7a4a3eaf93bc87d1b22
+        tag: v25.1
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/protocolbuffers/protobuf/releases/latest
+          tag-query: .tag_name
+          timestamp-query: .published_at
+          version-query: $tag | sub("^[vV]"; "")
   - name: deno
     buildsystem: simple
     build-commands:
@@ -21,6 +39,9 @@ modules:
       - install -Dm755 target/release/deno -t /app/bin/
 
     sources:
+      - type: archive
+        url: https://github.com/google/protobuf/releases/download/v3.8.0/protobuf-all-3.8.0.tar.gz
+        sha256: b7220b41481011305bf9100847cf294393973e869973a9661046601959b2960b
       - type: file
         url:  https://github.com/denoland/rusty_v8/releases/download/v0.82.0/librusty_v8_release_x86_64-unknown-linux-gnu.a
         sha256: da758e014bb373bb6bd0a89e7ae808a88df3691aeebe72d604f9fe65d1d35ec3
