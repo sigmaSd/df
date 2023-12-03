@@ -3,6 +3,8 @@ app-id: io.github.sigmasd.nosleep
 runtime: org.gnome.Platform
 runtime-version: '45'
 sdk: org.gnome.Platform
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
 
 command: nosleep
 
@@ -21,7 +23,6 @@ modules:
     config-opts:
       - -DCMAKE_BUILD_TYPE=None
       - -Dprotobuf_BUILD_TESTS=OFF
-      - -DBUILD_SHARED_LIBS=ON
     sources:
       - type: git
         url: https://github.com/protocolbuffers/protobuf.git
@@ -35,6 +36,10 @@ modules:
           version-query: $tag | sub("^[vV]"; "")
 
   - name: deno
+    build-options:
+    append-path: /usr/lib/sdk/rust-stable/bin
+    env:
+      CARGO_HOME: /run/build/nosleep/cargo
     buildsystem: simple
     build-commands:
       - ls -l

@@ -15,5 +15,5 @@ jobs:
     - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
       with:
         bundle: deno.flatpak
-        manifest-path: org.todo.deno.yml
+        manifest-path: io.github.sigmasd.nosleep
         cache-key: flatpak-builder-${{ github.sha }}
