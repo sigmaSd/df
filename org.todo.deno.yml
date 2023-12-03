@@ -16,10 +16,21 @@ modules:
   - name: deno
     buildsystem: simple
     build-commands:
-      - V8_FROM_SOURCE=1 cargo build --release
+      - mv librusty* librusty # unify name for different arch
+      - RUSTY_V8_ARCHIVE=$PWD/librusty cargo build --release
       - install -Dm755 target/release/deno -t /app/bin/
 
     sources:
+      - type: file
+        url:  https://github.com/denoland/rusty_v8/releases/download/v0.82.0/librusty_v8_release_x86_64-unknown-linux-gnu.a
+        sha256: da758e014bb373bb6bd0a89e7ae808a88df3691aeebe72d604f9fe65d1d35ec3
+        only-arches:
+          - x86_64
+      - type: file
+        url: https://github.com/denoland/rusty_v8/releases/download/v0.82.0/librusty_v8_release_aarch64-unknown-linux-gnu.a
+        sha256: be573ad19a05b53d94829d27a53d1d7a9e965a71010339d1edd60545a30d00a3
+        only-arches:
+          - aarch64
       - type: archive
         url: https://github.com/denoland/deno/releases/download/v1.38.4/deno_src.tar.gz
         sha256: a041d7407d89b94c7d2d863397159799c44ea5012eb3ff6870277003620b3ef4
